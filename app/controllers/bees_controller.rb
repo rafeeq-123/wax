@@ -11,7 +11,7 @@ class BeesController < ApplicationController
   def create
     @bee = Bee.new(bees_params)
     if @bee.save
-      redirect_to "show"
+      redirect_to @bee
     else
       render "new"
     end    
@@ -24,12 +24,22 @@ class BeesController < ApplicationController
   def destroy
     @bee = Bee.find(params[:id])
     @bee.destroy
-    redirect "index"
+    redirect_to @bee
+  end
+
+  def edit
+    @bee = Bee.find(params[:id])
+  end
+
+  def update
+    @bee = Bee.find(params[:id])
+    @bee.update(bees_params)
+    redirect_to @bee
   end
 
   private
 
   def bees_params
-    params.require(:bee).permit(:name, :address, :type)
+    params.require(:bee).permit(:name, :address, :bee_type)
   end
 end
