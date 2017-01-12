@@ -11,7 +11,7 @@ class BeesController < ApplicationController
   def create
     @bee = Bee.new(bees_params)
     if @bee.save
-      redirect "show"
+      redirect_to "show"
     else
       render "new"
     end    
@@ -26,7 +26,7 @@ class BeesController < ApplicationController
     @bee.destroy
     redirect "index"
   end
-  
+
   private
 
   def bees_params
